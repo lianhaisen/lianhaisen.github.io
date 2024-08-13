@@ -1,0 +1,68 @@
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=zh-cn lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><meta charset=utf-8><meta name=generator content="Hugo 0.132.0"><meta name=viewport content="width=device-width,initial-scale=1"><title>livp 格式解析 &#183; 幻海深蓝's BLOG</title>
+<meta name=description content="ffmpeg 转码视频给网页使用"><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/print.css media=print><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/poole.css><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/syntax.css><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/hyde.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png><script src=https://lianhaisen.github.io/js/highlight.min.js></script><link rel=stylesheet href=https://lianhaisen.github.io/css/github.min.css><script>hljs.highlightAll()</script></head><body class="theme-base-1d layout-reverse"><aside class=sidebar><div class="container sidebar-sticky"><div class=sidebar-about><a href=https://lianhaisen.github.io/><h1>幻海深蓝's BLOG</h1></a><p class=lead>一个树洞的地方随便说说</p></div><nav><ul class=sidebar-nav><li><a href=https://lianhaisen.github.io/>Home</a></li><li><a href=https://github.com/lianhaisen/>Github</a></li><li><a href=tags>Tags</a></li></ul></nav><p>&copy; 2024. All rights reserved.</p></div></aside><main class="content container"><div class=post><h1>livp 格式解析</h1><time datetime=2024-08-13T05:33:36Z class=post-date>Tue, Aug 13, 2024</time><p>平常都会传一些陪孩子出去玩的照片给老妈，老妈看到孙女的照片也会很开心。
+可是手机经常会提示清理微信，老妈也不会操作，经常弄着弄着照片也弄没了。
+后面 给她下载了天翼云盘的软件，不过还是不是给老人用的按钮太多复杂。
+就想着做个简单的网页给老妈看照片。</p><h3 id=alist-挂载天翼云>Alist 挂载天翼云</h3><p><a href=https://alist.nn.ci/>Home | AList Docs (nn.ci)</a> 按照文档挂载天翼云，用Api 读取文件信息，挂载vps 上面，挂链接，自动302 跳转到云盘的文件里面去。</p><h3 id=格式转化>格式转化</h3><p>平常都是用苹果拍照片和视频，视频时MOV格式，图片是LIVP的。这个格式就是一张图片+一小段视频，挺好的老人还蛮喜欢动起来的照片。可是要给安卓机的老妈看就比较麻烦了。有想过说做一个 flutter 内置解码器的 播放这些视频，感觉就是太麻烦，老人不会用，或者是机子垃圾转码带不动。</p><p>最后采用线下转码，传到云盘的方式来解决。</p><p>下载文件和转化mp4</p><pre tabindex=0><code>def download_file(url, local_filename):
+
+    with requests.get(url, stream=True) as r:
+
+        r.raise_for_status()
+
+        with open(local_filename, &#39;wb&#39;) as f:
+
+            for chunk in r.iter_content(chunk_size=8192):
+
+                f.write(chunk)
+
+    print(f&#34;File downloaded: {local_filename}&#34;)
+
+  
+
+def convert_to_mp4(input_file, output_file):
+
+    try:
+
+        ffmpeg.input(input_file).output(output_file).run()
+
+        print(f&#34;Conversion successful: {output_file}&#34;)
+
+    except ffmpeg.Error as e:
+
+        print(f&#34;Error occurred: {e}&#34;)
+</code></pre><p>livep 主要是当成zip解压，然后转码使用。</p><pre tabindex=0><code>    def doLigic2(self):
+
+        self.temp_file = &#34;temp.livp&#34;
+
+        try:
+
+            self.downloadFile()
+
+            with zipfile.ZipFile(self.temp_file, &#39;r&#39;) as zip_ref:
+
+                zip_ref.extractall(&#34;temp_folder&#34;)
+
+            for extracted_file in os.listdir(&#34;temp_folder&#34;):
+
+                if extracted_file.lower().endswith(&#39;.mov&#39;):
+
+                    mov_path = os.path.join(&#34;temp_folder&#34;, extracted_file)
+
+                    os.remove(self.temp_file)
+
+                    self.temp_file = mov_path
+
+            self.convertToMp4()
+
+            if os.path.exists(&#34;temp_folder&#34;):
+
+                shutil.rmtree(&#34;temp_folder&#34;)
+
+            return self.output_file
+
+        except Exception as e:
+
+            print(e)
+
+            return None
+</code></pre><p>PS：
+什么时候墙能到下了，国内要开发的话人人都要精通魔法。</p></div><script src=https://utteranc.es/client.js repo=lianhaisen/lianhaisen.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></main><script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFEZ8EZV1"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-DJFEZ8EZV1")}</script></body></html>
