@@ -1,30 +1,175 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 02 Sep 2024 01:27:01 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>一些感想</title><link>https://lianhaisen.github.io/post/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</link><pubDate>Mon, 02 Sep 2024 01:27:01 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</guid><description>一些聊天中，发现很多程序员都是顽固的护忠派，我觉得既然平常开发中都要用翻墙，应该对外面的世界有更深的认识，但凡知道历史的真实，应该就不会那么狂热，被人当枪使用指哪打哪了。 思维见识跟学历没有关系</description></item><item><title>flutter 更适合原生</title><link>https://lianhaisen.github.io/post/flutter-%E6%9B%B4%E9%80%82%E5%90%88%E5%8E%9F%E7%94%9F/</link><pubDate>Tue, 20 Aug 2024 09:29:26 +0000</pubDate><guid>https://lianhaisen.github.io/post/flutter-%E6%9B%B4%E9%80%82%E5%90%88%E5%8E%9F%E7%94%9F/</guid><description>做了个看 天翼云外链图片和视频的应用感觉 flutter原生表现比较好，web,可以用更简单的控件。</description></item><item><title>关于罪恶感</title><link>https://lianhaisen.github.io/post/%E5%85%B3%E4%BA%8E%E7%BD%AA%E6%81%B6%E6%84%9F/</link><pubDate>Fri, 16 Aug 2024 04:12:04 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%85%B3%E4%BA%8E%E7%BD%AA%E6%81%B6%E6%84%9F/</guid><description>有个想法，就是那些帮忙开发魔法墙，帮忙开发算法压榨外卖员，帮忙开发上网许可证的人心里没有罪恶感吗？ 同样都是程序员，历史的回旋镖总会插向自己的。</description></item><item><title>网页小游戏逆向有感</title><link>https://lianhaisen.github.io/post/%E7%BD%91%E9%A1%B5%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91%E6%9C%89%E6%84%9F/</link><pubDate>Fri, 16 Aug 2024 03:53:51 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%BD%91%E9%A1%B5%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91%E6%9C%89%E6%84%9F/</guid><description>感觉最难的是编译成wasm字节码，要花太大的代价修改。在里面跳转网页，影响游戏进程没法修改。
-还有比较没有见过的方式是 网络接口下部分运行代码。网络接口那边进行验证，东拉西扯的迷惑你。
-全部混淆成 oxAbc 那种变量的也很难修改，可读性非常差，美化代码的时候可能会破坏代码结构，可以在 developTool 里面拷贝出，被浏览器美化过的代码。</description></item><item><title>heic 格式的解析</title><link>https://lianhaisen.github.io/post/heic-%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 14 Aug 2024 06:34:34 +0000</pubDate><guid>https://lianhaisen.github.io/post/heic-%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%A7%A3%E6%9E%90/</guid><description>2012年的 macmini 上面运行的docker,带不动解码只好放在平常的机子上面了。
-heic 还是苹果那边用的图片格式，win,android 下面只有用插件才能解析还是用python 来解码
-self.download_file(url,&amp;#34;temp2.heic&amp;#34;) heif_file = pillow_heif.open_heif(&amp;#34;temp2.heic&amp;#34;) image = Image.frombytes( heif_file.mode, heif_file.size, heif_file.data ) # 将图像保存为 JPEG 格式 image.save(itemName, &amp;#34;JPEG&amp;#34;) 主要的代码时这些，需要用到
-from PIL import Image import pillow_heif 这两个库
-才想的微信发视频，发图片那么就，就是要转码 是本地转呢，还是网上转，估计就是用自己手机的性能来转。</description></item><item><title>不行了不能用twitter Api 发推了</title><link>https://lianhaisen.github.io/post/%E4%B8%8D%E8%A1%8C%E4%BA%86%E4%B8%8D%E8%83%BD%E7%94%A8twitter-api-%E5%8F%91%E6%8E%A8%E4%BA%86/</link><pubDate>Tue, 13 Aug 2024 06:15:23 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E4%B8%8D%E8%A1%8C%E4%BA%86%E4%B8%8D%E8%83%BD%E7%94%A8twitter-api-%E5%8F%91%E6%8E%A8%E4%BA%86/</guid><description>An error occurred: 403 Forbidden
-14You are not permitted to perform this action.
-被ban 了，重新生成哪些参数也没有用了</description></item><item><title>livp 格式解析</title><link>https://lianhaisen.github.io/post/livp-%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</link><pubDate>Tue, 13 Aug 2024 05:33:36 +0000</pubDate><guid>https://lianhaisen.github.io/post/livp-%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</guid><description>平常都会传一些陪孩子出去玩的照片给老妈，老妈看到孙女的照片也会很开心。 可是手机经常会提示清理微信，老妈也不会操作，经常弄着弄着照片也弄没了。 后面 给她下载了天翼云盘的软件，不过还是不是给老人用的按钮太多复杂。 就想着做个简单的网页给老妈看照片。
-Alist 挂载天翼云 Home | AList Docs (nn.ci) 按照文档挂载天翼云，用Api 读取文件信息，挂载vps 上面，挂链接，自动302 跳转到云盘的文件里面去。
-格式转化 平常都是用苹果拍照片和视频，视频时MOV格式，图片是LIVP的。这个格式就是一张图片+一小段视频，挺好的老人还蛮喜欢动起来的照片。可是要给安卓机的老妈看就比较麻烦了。有想过说做一个 flutter 内置解码器的 播放这些视频，感觉就是太麻烦，老人不会用，或者是机子垃圾转码带不动。
-最后采用线下转码，传到云盘的方式来解决。
-下载文件和转化mp4
-def download_file(url, local_filename): with requests.get(url, stream=True) as r: r.raise_for_status() with open(local_filename, &amp;#39;wb&amp;#39;) as f: for chunk in r.iter_content(chunk_size=8192): f.write(chunk) print(f&amp;#34;File downloaded: {local_filename}&amp;#34;) def convert_to_mp4(input_file, output_file): try: ffmpeg.input(input_file).output(output_file).run() print(f&amp;#34;Conversion successful: {output_file}&amp;#34;) except ffmpeg.Error as e: print(f&amp;#34;Error occurred: {e}&amp;#34;) livep 主要是当成zip解压，然后转码使用。
-def doLigic2(self): self.temp_file = &amp;#34;temp.livp&amp;#34; try: self.downloadFile() with zipfile.</description></item><item><title>Obsidian下面使用hugo</title><link>https://lianhaisen.github.io/post/obsidian%E4%B8%8B%E9%9D%A2%E4%BD%BF%E7%94%A8hugo/</link><pubDate>Mon, 12 Aug 2024 06:15:00 +0000</pubDate><guid>https://lianhaisen.github.io/post/obsidian%E4%B8%8B%E9%9D%A2%E4%BD%BF%E7%94%A8hugo/</guid><description>平常比较喜欢用obsidian写笔记，发现hugo可以把md直接转成githubpage页面。这不正好吗？可以直接做博客。
-开搞！
-新建hugo项目 参考 lianhaisen/fengzheng-blog: 一款简介的个人博客模板，使用 Hugo + Markdown (github.com) 文章列表 - Hugo中文文档 (gohugo.org)
-里面可以做基本的hugo工程，建议干开始使用简单的工程，比较少的报错。 正常就可以发布 githubpage 页面啦。
-链接obsidian 仓库 修改一些关键的配置 方便写新的页面
-这个时候会发现图片无法同时在 hogo server 下面和 obsidian 下面 同时显示
-编写插件 做这个插件的主要目的是显示图片。
-正常在 这么写再hogo 下面就可以显示图片了
-![](/images/Pasted%20image%2020240812142106.png) 但是 obsidian 下面要这么写才能显示
-![](/static/images/Pasted%20image%2020240812142106.png) 就需要一个插件在不改变md的情况下面，把链接解析成static 下面
-开搞！
-入门指南 | Obsidian 插件开发文档 (luhaifeng666.github.io) 插件开发里面新建一个插件
-this.registerMarkdownPostProcessor((element, context) =&amp;gt; { console.log(&amp;#39;HTML Content:&amp;#39;, element.innerHTML); // 打印渲染后的内容 const images = element.querySelectorAll(&amp;#39;.internal-embed&amp;#39;); console.log(`Found ${images.length} images`); images.forEach(img =&amp;gt; { const src = img.</description></item><item><title>终于推成功啦</title><link>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E6%8E%A8%E6%88%90%E5%8A%9F%E5%95%A6/</link><pubDate>Mon, 12 Aug 2024 05:53:50 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E6%8E%A8%E6%88%90%E5%8A%9F%E5%95%A6/</guid><description>终于推成功啦，有点成就感，用hugo 写md,让后到github,顺便推了一条， 话说twitter 的api 有够麻烦的，安全的代价吧</description></item><item><title>页面黑屏的问题</title><link>https://lianhaisen.github.io/post/%E9%A1%B5%E9%9D%A2%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Sat, 10 Aug 2024 10:59:30 +0800</pubDate><guid>https://lianhaisen.github.io/post/%E9%A1%B5%E9%9D%A2%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>问题 creator 2.4.11 特效页面在ios14 的safari 浏览器上面显示黑块 解决方案： cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
-if (window.jsb) { var isRuntime = (typeof loadRuntime === &amp;#39;function&amp;#39;); if (isRuntime) { require(&amp;#39;src/settings.js&amp;#39;); require(&amp;#39;src/cocos2d-runtime.js&amp;#39;); if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) { require(&amp;#39;src/physics.js&amp;#39;); } require(&amp;#39;jsb-adapter/engine/index.js&amp;#39;); } else { require(&amp;#39;src/settings.js&amp;#39;); require(&amp;#39;src/cocos2d-jsb.js&amp;#39;); if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) { require(&amp;#39;src/physics.js&amp;#39;); } require(&amp;#39;jsb-adapter/jsb-engine.js&amp;#39;); } cc.macro.CLEANUP_IMAGE_CACHE = true; cc.macro.ENABLE_TRANSPARENT_CANVAS = true; window.boot(); } 需要加在开始的地方，后面加的没有效果。 为了每次生成的时候自动生成，在项目中加 build-templates &amp;gt; web-mobile &amp;gt; main.js 加入这段代码，每次都可以自动生成。
-像这种不带透明通道的图片要要在页面上面显示出透明效果
-需要修改Blend 这种的设置在 ios14上面就是有黑块显示，就需要设置那个参数</description></item><item><title>Hello World!</title><link>https://lianhaisen.github.io/post/first/</link><pubDate>Fri, 09 Aug 2024 10:18:46 +0800</pubDate><guid>https://lianhaisen.github.io/post/first/</guid><description>程序员嘛，肯定是先写这个。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 12 Sep 2024 02:09:38 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>终于露出了獠牙</title><link>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E9%9C%B2%E5%87%BA%E4%BA%86%E7%8D%A0%E7%89%99/</link><pubDate>Thu, 12 Sep 2024 02:09:38 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E9%9C%B2%E5%87%BA%E4%BA%86%E7%8D%A0%E7%89%99/</guid><description>&lt;p>医保费用上涨，退休延迟，又是苦一苦百姓。&lt;/p></description></item><item><title>一些感想</title><link>https://lianhaisen.github.io/post/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</link><pubDate>Mon, 02 Sep 2024 01:27:01 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</guid><description>&lt;p>一些聊天中，发现很多程序员都是顽固的护忠派，我觉得既然平常开发中都要用翻墙，应该对外面的世界有更深的认识，但凡知道历史的真实，应该就不会那么狂热，被人当枪使用指哪打哪了。
+思维见识跟学历没有关系 。&lt;/p></description></item><item><title>flutter 更适合原生</title><link>https://lianhaisen.github.io/post/flutter-%E6%9B%B4%E9%80%82%E5%90%88%E5%8E%9F%E7%94%9F/</link><pubDate>Tue, 20 Aug 2024 09:29:26 +0000</pubDate><guid>https://lianhaisen.github.io/post/flutter-%E6%9B%B4%E9%80%82%E5%90%88%E5%8E%9F%E7%94%9F/</guid><description>&lt;p>做了个看 天翼云外链图片和视频的应用感觉 flutter原生表现比较好，web,可以用更简单的控件。&lt;/p></description></item><item><title>关于罪恶感</title><link>https://lianhaisen.github.io/post/%E5%85%B3%E4%BA%8E%E7%BD%AA%E6%81%B6%E6%84%9F/</link><pubDate>Fri, 16 Aug 2024 04:12:04 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%85%B3%E4%BA%8E%E7%BD%AA%E6%81%B6%E6%84%9F/</guid><description>&lt;p>有个想法，就是那些帮忙开发魔法墙，帮忙开发算法压榨外卖员，帮忙开发上网许可证的人心里没有罪恶感吗？ 同样都是程序员，历史的回旋镖总会插向自己的。&lt;/p></description></item><item><title>网页小游戏逆向有感</title><link>https://lianhaisen.github.io/post/%E7%BD%91%E9%A1%B5%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91%E6%9C%89%E6%84%9F/</link><pubDate>Fri, 16 Aug 2024 03:53:51 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%BD%91%E9%A1%B5%E5%B0%8F%E6%B8%B8%E6%88%8F%E9%80%86%E5%90%91%E6%9C%89%E6%84%9F/</guid><description>&lt;p>感觉最难的是编译成wasm字节码，要花太大的代价修改。在里面跳转网页，影响游戏进程没法修改。&lt;/p>
+&lt;p>还有比较没有见过的方式是 网络接口下部分运行代码。网络接口那边进行验证，东拉西扯的迷惑你。&lt;/p>
+&lt;p>全部混淆成 oxAbc 那种变量的也很难修改，可读性非常差，美化代码的时候可能会破坏代码结构，可以在 developTool 里面拷贝出，被浏览器美化过的代码。&lt;/p></description></item><item><title>heic 格式的解析</title><link>https://lianhaisen.github.io/post/heic-%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 14 Aug 2024 06:34:34 +0000</pubDate><guid>https://lianhaisen.github.io/post/heic-%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%A7%A3%E6%9E%90/</guid><description>&lt;p>2012年的 macmini 上面运行的docker,带不动解码只好放在平常的机子上面了。&lt;/p>
+&lt;p>heic 还是苹果那边用的图片格式，win,android 下面只有用插件才能解析还是用python 来解码&lt;/p>
+&lt;pre tabindex="0">&lt;code> self.download_file(url,&amp;#34;temp2.heic&amp;#34;)
+ heif_file = pillow_heif.open_heif(&amp;#34;temp2.heic&amp;#34;)
+ image = Image.frombytes(
+ heif_file.mode,
+ heif_file.size,
+ heif_file.data
+ )
+ # 将图像保存为 JPEG 格式
+ image.save(itemName, &amp;#34;JPEG&amp;#34;)
+&lt;/code>&lt;/pre>&lt;p>主要的代码时这些，需要用到&lt;/p>
+&lt;pre tabindex="0">&lt;code>from PIL import Image
+import pillow_heif
+&lt;/code>&lt;/pre>&lt;p>这两个库&lt;/p>
+&lt;p>才想的微信发视频，发图片那么就，就是要转码
+是本地转呢，还是网上转，估计就是用自己手机的性能来转。&lt;/p></description></item><item><title>不行了不能用twitter Api 发推了</title><link>https://lianhaisen.github.io/post/%E4%B8%8D%E8%A1%8C%E4%BA%86%E4%B8%8D%E8%83%BD%E7%94%A8twitter-api-%E5%8F%91%E6%8E%A8%E4%BA%86/</link><pubDate>Tue, 13 Aug 2024 06:15:23 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E4%B8%8D%E8%A1%8C%E4%BA%86%E4%B8%8D%E8%83%BD%E7%94%A8twitter-api-%E5%8F%91%E6%8E%A8%E4%BA%86/</guid><description>&lt;p>An error occurred: 403 Forbidden&lt;/p>
+&lt;p>&lt;a href="https://github.com/lianhaisen/haisen-blog/actions/runs/10364558580/job/28690057297#step:8:15">14&lt;/a>You are not permitted to perform this action.&lt;/p>
+&lt;p>被ban 了，重新生成哪些参数也没有用了&lt;/p></description></item><item><title>livp 格式解析</title><link>https://lianhaisen.github.io/post/livp-%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</link><pubDate>Tue, 13 Aug 2024 05:33:36 +0000</pubDate><guid>https://lianhaisen.github.io/post/livp-%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</guid><description>&lt;p>平常都会传一些陪孩子出去玩的照片给老妈，老妈看到孙女的照片也会很开心。
+可是手机经常会提示清理微信，老妈也不会操作，经常弄着弄着照片也弄没了。
+后面 给她下载了天翼云盘的软件，不过还是不是给老人用的按钮太多复杂。
+就想着做个简单的网页给老妈看照片。&lt;/p>
+&lt;h3 id="alist-挂载天翼云">Alist 挂载天翼云&lt;/h3>
+&lt;p>&lt;a href="https://alist.nn.ci/">Home | AList Docs (nn.ci)&lt;/a> 按照文档挂载天翼云，用Api 读取文件信息，挂载vps 上面，挂链接，自动302 跳转到云盘的文件里面去。&lt;/p>
+&lt;h3 id="格式转化">格式转化&lt;/h3>
+&lt;p>平常都是用苹果拍照片和视频，视频时MOV格式，图片是LIVP的。这个格式就是一张图片+一小段视频，挺好的老人还蛮喜欢动起来的照片。可是要给安卓机的老妈看就比较麻烦了。有想过说做一个 flutter 内置解码器的 播放这些视频，感觉就是太麻烦，老人不会用，或者是机子垃圾转码带不动。&lt;/p>
+&lt;p>最后采用线下转码，传到云盘的方式来解决。&lt;/p>
+&lt;p>下载文件和转化mp4&lt;/p>
+&lt;pre tabindex="0">&lt;code>def download_file(url, local_filename):
+
+    with requests.get(url, stream=True) as r:
+
+        r.raise_for_status()
+
+        with open(local_filename, &amp;#39;wb&amp;#39;) as f:
+
+            for chunk in r.iter_content(chunk_size=8192):
+
+                f.write(chunk)
+
+    print(f&amp;#34;File downloaded: {local_filename}&amp;#34;)
+
+ 
+
+def convert_to_mp4(input_file, output_file):
+
+    try:
+
+        ffmpeg.input(input_file).output(output_file).run()
+
+        print(f&amp;#34;Conversion successful: {output_file}&amp;#34;)
+
+    except ffmpeg.Error as e:
+
+        print(f&amp;#34;Error occurred: {e}&amp;#34;)
+&lt;/code>&lt;/pre>&lt;p>livep 主要是当成zip解压，然后转码使用。&lt;/p>
+&lt;pre tabindex="0">&lt;code>    def doLigic2(self):
+
+        self.temp_file = &amp;#34;temp.livp&amp;#34;
+
+        try:
+
+            self.downloadFile()
+
+            with zipfile.ZipFile(self.temp_file, &amp;#39;r&amp;#39;) as zip_ref:
+
+                zip_ref.extractall(&amp;#34;temp_folder&amp;#34;)
+
+            for extracted_file in os.listdir(&amp;#34;temp_folder&amp;#34;):
+
+                if extracted_file.lower().endswith(&amp;#39;.mov&amp;#39;):
+
+                    mov_path = os.path.join(&amp;#34;temp_folder&amp;#34;, extracted_file)
+
+                    os.remove(self.temp_file)
+
+                    self.temp_file = mov_path
+
+            self.convertToMp4()
+
+            if os.path.exists(&amp;#34;temp_folder&amp;#34;):
+
+                shutil.rmtree(&amp;#34;temp_folder&amp;#34;)
+
+            return self.output_file
+
+        except Exception as e:
+
+            print(e)
+
+            return None
+&lt;/code>&lt;/pre>&lt;p>PS：
+什么时候墙能到下了，国内要开发的话人人都要精通魔法。&lt;/p></description></item><item><title>Obsidian下面使用hugo</title><link>https://lianhaisen.github.io/post/obsidian%E4%B8%8B%E9%9D%A2%E4%BD%BF%E7%94%A8hugo/</link><pubDate>Mon, 12 Aug 2024 06:15:00 +0000</pubDate><guid>https://lianhaisen.github.io/post/obsidian%E4%B8%8B%E9%9D%A2%E4%BD%BF%E7%94%A8hugo/</guid><description>&lt;p>平常比较喜欢用obsidian写笔记，发现hugo可以把md直接转成githubpage页面。这不正好吗？可以直接做博客。&lt;/p>
+&lt;p>开搞！&lt;/p>
+&lt;h3 id="新建hugo项目">新建hugo项目&lt;/h3>
+&lt;p>参考 &lt;a href="https://github.com/lianhaisen/fengzheng-blog">lianhaisen/fengzheng-blog: 一款简介的个人博客模板，使用 Hugo + Markdown (github.com)&lt;/a>
+&lt;a href="https://www.gohugo.org/post/">文章列表 - Hugo中文文档 (gohugo.org)&lt;/a>&lt;/p>
+&lt;p>里面可以做基本的hugo工程，建议干开始使用简单的工程，比较少的报错。
+正常就可以发布 githubpage 页面啦。&lt;/p>
+&lt;h3 id="链接obsidian-仓库">链接obsidian 仓库&lt;/h3>
+&lt;p>&lt;img src="https://lianhaisen.github.io/images/Pasted%20image%2020240812142106.png" alt="">
+修改一些关键的配置 方便写新的页面&lt;/p>
+&lt;p>这个时候会发现图片无法同时在 hogo server 下面和 obsidian 下面 同时显示&lt;/p>
+&lt;h3 id="编写插件">编写插件&lt;/h3>
+&lt;p>做这个插件的主要目的是显示图片。&lt;/p>
+&lt;p>正常在 这么写再hogo 下面就可以显示图片了&lt;/p>
+&lt;pre tabindex="0">&lt;code>![](/images/Pasted%20image%2020240812142106.png)
+&lt;/code>&lt;/pre>&lt;p>但是 obsidian 下面要这么写才能显示&lt;/p>
+&lt;pre tabindex="0">&lt;code>![](/static/images/Pasted%20image%2020240812142106.png)
+&lt;/code>&lt;/pre>&lt;p>就需要一个插件在不改变md的情况下面，把链接解析成static 下面&lt;/p>
+&lt;p>开搞！&lt;/p>
+&lt;p>&lt;a href="https://luhaifeng666.github.io/obsidian-plugin-docs-zh/zh2.0/getting-started/">入门指南 | Obsidian 插件开发文档 (luhaifeng666.github.io)&lt;/a>
+插件开发里面新建一个插件&lt;/p>
+&lt;pre tabindex="0">&lt;code> 
+
+        this.registerMarkdownPostProcessor((element, context) =&amp;gt; {
+
+            console.log(&amp;#39;HTML Content:&amp;#39;, element.innerHTML);  // 打印渲染后的内容
+
+            const images = element.querySelectorAll(&amp;#39;.internal-embed&amp;#39;);
+
+            console.log(`Found ${images.length} images`);
+
+            images.forEach(img =&amp;gt; {
+
+                const src = img.getAttribute(&amp;#39;src&amp;#39;);
+
+                if (src &amp;amp;&amp;amp; src.startsWith(&amp;#39;/images/&amp;#39;)) {
+
+                    img.setAttribute(&amp;#39;src&amp;#39;, `static/images/${src.substring(8)}`);
+
+                    console.log(`Updated src: static/images/${src.substring(8)}`);
+
+                }
+
+            });
+
+        });
+&lt;/code>&lt;/pre>&lt;p>强制解析到static 下面就行了&lt;/p></description></item><item><title>终于推成功啦</title><link>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E6%8E%A8%E6%88%90%E5%8A%9F%E5%95%A6/</link><pubDate>Mon, 12 Aug 2024 05:53:50 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%BB%88%E4%BA%8E%E6%8E%A8%E6%88%90%E5%8A%9F%E5%95%A6/</guid><description>&lt;p>终于推成功啦，有点成就感，用hugo 写md,让后到github,顺便推了一条，
+话说twitter 的api 有够麻烦的，安全的代价吧&lt;/p></description></item><item><title>页面黑屏的问题</title><link>https://lianhaisen.github.io/post/%E9%A1%B5%E9%9D%A2%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Sat, 10 Aug 2024 10:59:30 +0800</pubDate><guid>https://lianhaisen.github.io/post/%E9%A1%B5%E9%9D%A2%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;h3 id="问题-creator-2411-特效页面在ios14-的safari-浏览器上面显示黑块">问题 creator 2.4.11 特效页面在ios14 的safari 浏览器上面显示黑块&lt;/h3>
+&lt;p>解决方案：
+cc.macro.ENABLE_TRANSPARENT_CANVAS = true;&lt;/p>
+&lt;pre tabindex="0">&lt;code> if (window.jsb) {
+ var isRuntime = (typeof loadRuntime === &amp;#39;function&amp;#39;);
+ if (isRuntime) {
+ require(&amp;#39;src/settings.js&amp;#39;);
+ require(&amp;#39;src/cocos2d-runtime.js&amp;#39;);
+ if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+ require(&amp;#39;src/physics.js&amp;#39;);
+ }
+ require(&amp;#39;jsb-adapter/engine/index.js&amp;#39;);
+ }
+ else {
+ require(&amp;#39;src/settings.js&amp;#39;);
+ require(&amp;#39;src/cocos2d-jsb.js&amp;#39;);
+ if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+ require(&amp;#39;src/physics.js&amp;#39;);
+ }
+ require(&amp;#39;jsb-adapter/jsb-engine.js&amp;#39;);
+ }
+ 
+ cc.macro.CLEANUP_IMAGE_CACHE = true;
+ cc.macro.ENABLE_TRANSPARENT_CANVAS = true; 
+ window.boot();
+}
+&lt;/code>&lt;/pre>&lt;p>需要加在开始的地方，后面加的没有效果。
+为了每次生成的时候自动生成，在项目中加 build-templates &amp;gt; web-mobile &amp;gt; main.js 加入这段代码，每次都可以自动生成。&lt;/p>
+&lt;p>&lt;img src="https://lianhaisen.github.io/images/image.png" alt="">
+像这种不带透明通道的图片要要在页面上面显示出透明效果&lt;/p>
+&lt;p>&lt;img src="https://lianhaisen.github.io/images/image2.png" alt="">
+需要修改Blend
+这种的设置在 ios14上面就是有黑块显示，就需要设置那个参数&lt;/p></description></item><item><title>Hello World!</title><link>https://lianhaisen.github.io/post/first/</link><pubDate>Fri, 09 Aug 2024 10:18:46 +0800</pubDate><guid>https://lianhaisen.github.io/post/first/</guid><description>&lt;p>程序员嘛，肯定是先写这个。&lt;/p></description></item></channel></rss>
