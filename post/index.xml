@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Fri, 27 Sep 2024 10:09:18 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>害怕什么</title><link>https://lianhaisen.github.io/post/%E5%AE%B3%E6%80%95%E4%BB%80%E4%B9%88/</link><pubDate>Fri, 27 Sep 2024 10:09:18 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%AE%B3%E6%80%95%E4%BB%80%E4%B9%88/</guid><description>&lt;p>他们害怕的不是北约，不是美国，而是文明&lt;/p></description></item><item><title>慷慨病</title><link>https://lianhaisen.github.io/post/%E6%85%B7%E6%85%A8%E7%97%85/</link><pubDate>Fri, 27 Sep 2024 10:06:18 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E6%85%B7%E6%85%A8%E7%97%85/</guid><description>&lt;p>因脑神经受损而引发的疾病
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 07 Oct 2024 09:50:49 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>cocoscreator 3.x 替换本地化省力的步骤</title><link>https://lianhaisen.github.io/post/cocoscreator-3.x-%E6%9B%BF%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9C%81%E5%8A%9B%E7%9A%84%E6%AD%A5%E9%AA%A4/</link><pubDate>Mon, 07 Oct 2024 09:50:49 +0000</pubDate><guid>https://lianhaisen.github.io/post/cocoscreator-3.x-%E6%9B%BF%E6%8D%A2%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9C%81%E5%8A%9B%E7%9A%84%E6%AD%A5%E9%AA%A4/</guid><description>&lt;p>主要是图片和文字的替换，我这边遇到的情况是 大部分用的字体都是在图片的情况&lt;/p>
+&lt;ol>
+&lt;li>命名对应 _en _pt 的图片 在当前需要翻译的图片目录下面&lt;/li>
+&lt;li>批量选取_en _pt , 改成 SpriteFrame&lt;/li>
+&lt;li>新建 扩展，实现 选中的 spriteFrame 下面，自动 赋值 en pt 的 LocalizedSprite 值&lt;/li>
+&lt;/ol>
+&lt;pre tabindex="0">&lt;code>import { join } from &amp;#39;path&amp;#39;;
+module.paths.push(join(Editor.App.path, &amp;#39;node_modules&amp;#39;));
+const { director, Node, log, game, renderer, gfx,assetManager,Texture2D,SpriteFrame} = require(&amp;#39;cc&amp;#39;);
+
+
+
+export function load() { };
+export function unload() { };
+export const methods = { 
+ _findNode(node:any,uuid:string):any{
+ if(node.uuid == uuid){
+ return node
+ }
+ if(node.childrenCount &amp;gt; 0){
+ for(let item of node.children){
+ let isFind = this._findNode(item,uuid)
+ if(isFind != null){
+ return isFind
+ }
+ }
+ } 
+ },
+ findNode(uuid:string){
+ let node = director.getScene()
+ return this._findNode(node,uuid)
+ },
+
+ loadResEn(uuid:string,isEn:boolean = true){
+ 
+ return new Promise&amp;lt;any&amp;gt;((resolve, reject) =&amp;gt; {
+
+ const index = uuid.indexOf(&amp;#39;@&amp;#39;);
+ if (index !== -1) {
+ uuid = uuid.substring(0, index);
+ }
+ 
+ Editor.Message.request(&amp;#39;asset-db&amp;#39;, &amp;#39;query-url&amp;#39;, uuid).then((url) =&amp;gt; {
+ url = url || &amp;#34;&amp;#34;;
+ const index = url.lastIndexOf(&amp;#39;.&amp;#39;);
+ if (index !== -1) {
+ const ext = url.substring(index);
+ url = url.substring(0, index) + (isEn? &amp;#39;_en&amp;#39;:&amp;#39;_pt&amp;#39;) + ext;
+ console.log(url)
+ }
+ Editor.Message.request(&amp;#39;asset-db&amp;#39;, &amp;#39;query-uuid&amp;#39;, url).then((asset) =&amp;gt; {
+ asset = asset || &amp;#34;&amp;#34;;
+ Editor.Message.request(&amp;#39;asset-db&amp;#39;, &amp;#39;query-asset-info&amp;#39;,asset).then((newAsset) =&amp;gt; {
+ if(newAsset?.redirect?.type != &amp;#34;cc.SpriteFrame&amp;#34;){
+ console.log(&amp;#34;not cc.SpriteFrame&amp;#34;);
+ reject(&amp;#34;not cc.SpriteFrame&amp;#34;);
+ }else{
+ for(let itemName in newAsset.subAssets){
+ let item = newAsset.subAssets[itemName];
+ console.log(item.type);
+ if(item.type == &amp;#34;cc.SpriteFrame&amp;#34;){
+ assetManager.loadAny({ uuid: item.uuid }, (err:any, asset:any) =&amp;gt; {
+ if (err) {
+ console.error(err);
+ reject(err);
+ return;
+ }
+ resolve(asset); 
+ })
+ }
+ }
+ }
+ })
+ });
+ 
+ })
+ });
+
+ },
+
+ 
+ loadResPt(uuid:string){
+ return this.loadResEn(uuid,false)
+ },
+
+
+ async onAdd(){
+ const selectedNodes = await Editor.Selection.getSelected(&amp;#39;node&amp;#39;);
+ //ignore this
+ if (selectedNodes.length === 0) {
+ await Editor.Dialog.warn(&amp;#39;Please select at least one node.&amp;#39;); 
+ return;
+ } 
+ for (const nodeId of selectedNodes) {
+ let node = this.findNode(nodeId)
+ if(node){
+ 
+ let sprite = node.getComponent(&amp;#39;cc.Sprite&amp;#39;)
+ if(sprite){
+ let localizedSprite = node.getComponent(&amp;#39;LocalizedSprite&amp;#39;)
+ if(localizedSprite){
+ node.removeComponent(&amp;#39;LocalizedSprite&amp;#39;)
+ }else{
+ localizedSprite = node.addComponent(&amp;#39;LocalizedSprite&amp;#39;)
+
+ let zhItem = new window.LocalizedSpriteItem()
+ zhItem.language = &amp;#39;zh&amp;#39;;
+ zhItem.spriteFrame = sprite.spriteFrame;
+ localizedSprite.spriteList.push(zhItem);
+
+ let en = new window.LocalizedSpriteItem()
+ en.language = &amp;#39;en&amp;#39;;
+ en.spriteFrame = await this.loadResEn(sprite.spriteFrame._uuid);
+ localizedSprite.spriteList.push(en);
+
+ let pt = new window.LocalizedSpriteItem()
+ pt.language = &amp;#39;pt&amp;#39;;
+ pt.spriteFrame = await this.loadResPt(sprite.spriteFrame._uuid);
+ localizedSprite.spriteList.push(pt);
+ 
+ await Editor.Message.request(&amp;#39;scene&amp;#39;, &amp;#39;save-scene&amp;#39;);
+ await Editor.Message.request(&amp;#39;scene&amp;#39;, &amp;#39;soft-reload&amp;#39;);
+ }
+
+ }else{
+ await Editor.Dialog.warn(&amp;#34;no has cc.Sprite&amp;#34;);
+ }
+ } 
+ // await Editor.Dialog.warn(nodeId); 
+ }
+
+ },
+
+
+ async test(){
+ 
+ }
+};
+&lt;/code>&lt;/pre>&lt;p>主要的scene.ts 的代码， 就是寻找 _en _pt 后缀的图片spriteFrame 赋值给 LocalizedSprite
+4. 一个个看的去替换，其实有的图片没有用到的，不需要 去寻找引用，一个个换。还更直接，一边做一边看~&lt;/p></description></item><item><title>害怕什么</title><link>https://lianhaisen.github.io/post/%E5%AE%B3%E6%80%95%E4%BB%80%E4%B9%88/</link><pubDate>Fri, 27 Sep 2024 10:09:18 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%AE%B3%E6%80%95%E4%BB%80%E4%B9%88/</guid><description>&lt;p>他们害怕的不是北约，不是美国，而是文明&lt;/p></description></item><item><title>慷慨病</title><link>https://lianhaisen.github.io/post/%E6%85%B7%E6%85%A8%E7%97%85/</link><pubDate>Fri, 27 Sep 2024 10:06:18 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E6%85%B7%E6%85%A8%E7%97%85/</guid><description>&lt;p>因脑神经受损而引发的疾病
 慷慨病是一种因脑神经受损而引发的疾病。病症表现为极其乐善肺，不断向认识或不认识的人贝曾送零食、饮料乃至钱财。概病与一些常见的中风后遗症，可能有助于研究“利他主义和利己主义”的关系，更好地了解大胍如何决策。&lt;/p></description></item><item><title>垄断</title><link>https://lianhaisen.github.io/post/%E5%9E%84%E6%96%AD/</link><pubDate>Fri, 27 Sep 2024 10:03:37 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%9E%84%E6%96%AD/</guid><description>&lt;p>关于杭州单王猝死之后，平台似乎禁止了 45 岁以上的骑手接单。工作机会和好的工作条件应该是可以统一在一起的，平台好像是在说，要不就拼命干，要不就别干“一、 2015 年那会丿 L ，美团还没有达到垄断地位，百度外卖还在的时候，骑手的单价就可以达到 9 块钱一单，而且有各种极端天气的补贴。后来饿了么收购了百度外卖，饿了么又被阿里收购，和阿里的囗碑外卖合并了，这些补贴就逐渐没有了。才过去 10 年，竟有一种恍如隔世的感觉，能拿高温补贴的外卖员已经成为历史。最主要的是，它们一开始是可以用正常的雇佣方式对待外卖员的，垄断之后就真的可以做到拿人不当人了，这可能是我最感同深受的开历史倒车的行为。&lt;/p></description></item><item><title>法治</title><link>https://lianhaisen.github.io/post/%E6%B3%95%E6%B2%BB/</link><pubDate>Fri, 27 Sep 2024 10:02:40 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E6%B3%95%E6%B2%BB/</guid><description>&lt;p>经济学家吴晓求很委婉地表达：中国的经济问题不是经济问题，而是法治问题，没有法治就没有安全感，没有安全感就不会有信心。&lt;/p></description></item><item><title>不关心足球</title><link>https://lianhaisen.github.io/post/%E4%B8%8D%E5%85%B3%E5%BF%83%E8%B6%B3%E7%90%83/</link><pubDate>Fri, 27 Sep 2024 10:00:23 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E4%B8%8D%E5%85%B3%E5%BF%83%E8%B6%B3%E7%90%83/</guid><description>&lt;p>中国足球不行根本原因其实很简单，就是中国人根本不喜欢足球，不关心足球，对足球不感兴趣，没有任何想与的飲望。基至中国人都不是不欢足球，而是不喜欢所有的体育项目，需要消耗体力的任何运动都不想与，而且这种状态在越年轻的群身上体现得就越明显，年轻人对于电子网络蜈乐的热爱远远高于体育运动。因此可以说中国不仅仅是足球小国弱国，而且是名副其实的体育小国弱国。&lt;/p></description></item><item><title>火爆短视频</title><link>https://lianhaisen.github.io/post/%E7%81%AB%E7%88%86%E7%9F%AD%E8%A7%86%E9%A2%91/</link><pubDate>Fri, 27 Sep 2024 09:56:37 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E7%81%AB%E7%88%86%E7%9F%AD%E8%A7%86%E9%A2%91/</guid><description>&lt;p>发现能爆的短视频大部分都在前两秒就抛出了一些东西，这些东西多半是对抗性的，比如家庭矛盾，社会矛盾，职场矛盾，等等，螳螂捕猎其实也是一种猎手与猎物的矛盾；其次也可以是前后反差巨大的东西，比如先展示一个精美的成品，然后展示如何从肮脏的原料制作出来，比如一个丑人如何化妆变得美丽动人，等等。抛出矛盾或反差以后再展示过程，这样视频的完播率就非常高了，观众看完以后也会因为心理得到了满足从而点赞评论转发。&lt;/p></description></item><item><title>底层互害</title><link>https://lianhaisen.github.io/post/%E5%BA%95%E5%B1%82%E4%BA%92%E5%AE%B3/</link><pubDate>Wed, 25 Sep 2024 03:12:11 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E5%BA%95%E5%B1%82%E4%BA%92%E5%AE%B3/</guid><description>&lt;p>&lt;img src="https://lianhaisen.github.io/images/Pasted%20image%2020240925111213.png" alt="">&lt;/p></description></item><item><title>Flutter 第三方登陆</title><link>https://lianhaisen.github.io/post/flutter-%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/</link><pubDate>Tue, 24 Sep 2024 05:56:28 +0000</pubDate><guid>https://lianhaisen.github.io/post/flutter-%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/</guid><description>&lt;p>Flutter firebase 使用 signInWithRedirect,无法返回数据，&lt;code>signInWithPopup&lt;/code> 可以返回数据，但是有的浏览器会阻止，例如Apple 的 safari, 这个时候就不能只使用 signInWithPopup 了。&lt;/p>
 &lt;p>flutter_facebook_auth
 google_sign_in&lt;/p>

@@ -1,0 +1,135 @@
+<!doctype html><html xmlns=http://www.w3.org/1999/xhtml xml:lang=zh-cn lang=zh-cn><head><link href=https://gmpg.org/xfn/11 rel=profile><meta charset=utf-8><meta name=generator content="Hugo 0.135.0"><meta name=viewport content="width=device-width,initial-scale=1"><title>cocoscreator 3.x 替换本地化省力的步骤 &#183; 幻海深蓝's BLOG</title>
+<meta name=description content><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/print.css media=print><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/poole.css><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/syntax.css><link type=text/css rel=stylesheet href=https://lianhaisen.github.io/css/hyde.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=/favicon.png><script src=https://lianhaisen.github.io/js/highlight.min.js></script><link rel=stylesheet href=https://lianhaisen.github.io/css/github.min.css><script>hljs.highlightAll()</script></head><body class="theme-base-1d layout-reverse"><aside class=sidebar><div class="container sidebar-sticky"><div class=sidebar-about><a href=https://lianhaisen.github.io/><h1>幻海深蓝's BLOG</h1></a><p class=lead>一个树洞的地方随便说说</p></div><nav><ul class=sidebar-nav><li><a href=https://lianhaisen.github.io/>Home</a></li><li><a href=https://github.com/lianhaisen/>Github</a></li><li><a href=tags>Tags</a></li></ul></nav><p>&copy; 2024. All rights reserved.</p></div></aside><main class="content container"><div class=post><h1>cocoscreator 3.x 替换本地化省力的步骤</h1><time datetime=2024-10-07T09:50:49Z class=post-date>Mon, Oct 7, 2024</time><p>主要是图片和文字的替换，我这边遇到的情况是 大部分用的字体都是在图片的情况</p><ol><li>命名对应 _en _pt 的图片 在当前需要翻译的图片目录下面</li><li>批量选取_en _pt , 改成 SpriteFrame</li><li>新建 扩展，实现 选中的 spriteFrame 下面，自动 赋值 en pt 的 LocalizedSprite 值</li></ol><pre tabindex=0><code>import { join } from &#39;path&#39;;
+module.paths.push(join(Editor.App.path, &#39;node_modules&#39;));
+const { director, Node, log, game, renderer, gfx,assetManager,Texture2D,SpriteFrame} = require(&#39;cc&#39;);
+
+
+
+export function load() { };
+export function unload() { };
+export const methods = { 
+    _findNode(node:any,uuid:string):any{
+        if(node.uuid == uuid){
+            return node
+        }
+        if(node.childrenCount &gt; 0){
+            for(let item of node.children){
+                let isFind = this._findNode(item,uuid)
+                if(isFind != null){
+                    return isFind
+                }
+            }
+        } 
+    },
+    findNode(uuid:string){
+        let node = director.getScene()
+        return this._findNode(node,uuid)
+    },
+
+    loadResEn(uuid:string,isEn:boolean = true){
+         
+        return new Promise&lt;any&gt;((resolve, reject) =&gt; {
+
+            const index = uuid.indexOf(&#39;@&#39;);
+            if (index !== -1) {
+                uuid = uuid.substring(0, index);
+            }
+    
+            Editor.Message.request(&#39;asset-db&#39;, &#39;query-url&#39;, uuid).then((url) =&gt; {
+                url = url || &#34;&#34;;
+                const index = url.lastIndexOf(&#39;.&#39;);
+                if (index !== -1) {
+                    const ext = url.substring(index);
+                    url = url.substring(0, index) +  (isEn? &#39;_en&#39;:&#39;_pt&#39;) + ext;
+                    console.log(url)
+                }
+                Editor.Message.request(&#39;asset-db&#39;, &#39;query-uuid&#39;, url).then((asset) =&gt; {
+                    asset = asset || &#34;&#34;;
+                    Editor.Message.request(&#39;asset-db&#39;, &#39;query-asset-info&#39;,asset).then((newAsset) =&gt; {
+                         if(newAsset?.redirect?.type != &#34;cc.SpriteFrame&#34;){
+                            console.log(&#34;not cc.SpriteFrame&#34;);
+                            reject(&#34;not cc.SpriteFrame&#34;);
+                         }else{
+                            for(let itemName in newAsset.subAssets){
+                                let item = newAsset.subAssets[itemName];
+                                console.log(item.type);
+                                if(item.type == &#34;cc.SpriteFrame&#34;){
+                                    assetManager.loadAny({ uuid: item.uuid }, (err:any, asset:any) =&gt; {
+                                        if (err) {
+                                            console.error(err);
+                                            reject(err);
+                                            return;
+                                        }
+                                        resolve(asset);  
+                                    })
+                                }
+                            }
+                         }
+                    })
+                });
+                    
+            })
+        });
+
+    },
+
+ 
+    loadResPt(uuid:string){
+        return this.loadResEn(uuid,false)
+    },
+
+
+    async onAdd(){
+        const selectedNodes = await Editor.Selection.getSelected(&#39;node&#39;);
+        //ignore this
+        if (selectedNodes.length === 0) {
+            await Editor.Dialog.warn(&#39;Please select at least one node.&#39;); 
+            return;
+        } 
+        for (const nodeId of selectedNodes) {
+            let node = this.findNode(nodeId)
+            if(node){
+              
+                let sprite = node.getComponent(&#39;cc.Sprite&#39;)
+                if(sprite){
+                    let localizedSprite = node.getComponent(&#39;LocalizedSprite&#39;)
+                    if(localizedSprite){
+                        node.removeComponent(&#39;LocalizedSprite&#39;)
+                    }else{
+                        localizedSprite = node.addComponent(&#39;LocalizedSprite&#39;)
+
+                        let zhItem = new window.LocalizedSpriteItem()
+                        zhItem.language = &#39;zh&#39;;
+                        zhItem.spriteFrame = sprite.spriteFrame;
+                        localizedSprite.spriteList.push(zhItem);
+
+                        let en = new window.LocalizedSpriteItem()
+                        en.language = &#39;en&#39;;
+                        en.spriteFrame = await this.loadResEn(sprite.spriteFrame._uuid);
+                        localizedSprite.spriteList.push(en);
+
+                        let pt = new window.LocalizedSpriteItem()
+                        pt.language = &#39;pt&#39;;
+                        pt.spriteFrame = await this.loadResPt(sprite.spriteFrame._uuid);
+                        localizedSprite.spriteList.push(pt);
+                        
+                        await Editor.Message.request(&#39;scene&#39;, &#39;save-scene&#39;);
+                        await Editor.Message.request(&#39;scene&#39;, &#39;soft-reload&#39;);
+                    }
+
+                }else{
+                    await Editor.Dialog.warn(&#34;no has cc.Sprite&#34;);
+                }
+            } 
+            // await Editor.Dialog.warn(nodeId); 
+        }
+
+    },
+
+
+    async test(){
+       
+    }
+};
+</code></pre><p>主要的scene.ts 的代码， 就是寻找 _en _pt 后缀的图片spriteFrame 赋值给 LocalizedSprite
+4. 一个个看的去替换，其实有的图片没有用到的，不需要 去寻找引用，一个个换。还更直接，一边做一边看~</p></div><script src=https://utteranc.es/client.js repo=lianhaisen/lianhaisen.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script></main><script async src="https://www.googletagmanager.com/gtag/js?id=G-DJFEZ8EZV1"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-DJFEZ8EZV1")}</script></body></html>
