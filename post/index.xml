@@ -317,4 +317,11 @@ cc.macro.ENABLE_TRANSPARENT_CANVAS = true;&lt;/p>
 像这种不带透明通道的图片要要在页面上面显示出透明效果&lt;/p>
 &lt;p>&lt;img src="https://lianhaisen.github.io/images/image2.png" alt="">
 需要修改Blend
-这种的设置在 ios14上面就是有黑块显示，就需要设置那个参数&lt;/p></description></item><item><title>Hello World!</title><link>https://lianhaisen.github.io/post/first/</link><pubDate>Fri, 09 Aug 2024 10:18:46 +0800</pubDate><guid>https://lianhaisen.github.io/post/first/</guid><description>&lt;p>程序员嘛，肯定是先写这个。&lt;/p></description></item></channel></rss>
+这种的设置在 ios14上面就是有黑块显示，就需要设置那个参数&lt;/p></description></item><item><title>Hello World!</title><link>https://lianhaisen.github.io/post/first/</link><pubDate>Fri, 09 Aug 2024 10:18:46 +0800</pubDate><guid>https://lianhaisen.github.io/post/first/</guid><description>&lt;p>程序员嘛，肯定是先写这个。&lt;/p></description></item><item><title/><link>https://lianhaisen.github.io/post/%E6%97%A0%E8%A8%80%E7%9A%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E6%97%A0%E8%A8%80%E7%9A%84/</guid><description>&lt;p>title = &amp;lsquo;无言&amp;rsquo;
+date = 2024-10-29T00:53:24.644Z
+draft = false
+Categories = []
+Tags = []
+Description = &amp;quot;&amp;quot;
++++&lt;/p>
+&lt;p>&lt;img src="images/Pasted%20image%2020241029085339.png" alt="">&lt;/p></description></item></channel></rss>
