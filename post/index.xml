@@ -324,4 +324,12 @@ Categories = []
 Tags = []
 Description = &amp;quot;&amp;quot;
 +++&lt;/p>
-&lt;p>&lt;img src="images/Pasted%20image%2020241029085339.png" alt="">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="images/Pasted%20image%2020241029085339.png" alt="">&lt;/p></description></item><item><title/><link>https://lianhaisen.github.io/post/%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%90%E8%A1%8Cscrcpy-%E6%8A%A5%E9%94%99/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%90%E8%A1%8Cscrcpy-%E6%8A%A5%E9%94%99/</guid><description>&lt;p>title = &amp;lsquo;虚拟机运行&amp;rsquo;
+date = 2024-12-12T01:26:34.641Z
+draft = false
+Categories = []
+Tags = []
+Description = &amp;quot;&amp;quot;
++++&lt;/p>
+&lt;p>scrcpy -s 192.168.1.15:5555 &amp;ndash;no-audio-playback+++&lt;/p>
+&lt;p>虚拟机上面没有音频播放设备 设置下不要播放就好了&lt;/p></description></item></channel></rss>
