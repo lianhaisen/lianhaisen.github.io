@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/</link><description>Recent content on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Thu, 19 Dec 2024 05:56:23 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>nssm 使用</title><link>https://lianhaisen.github.io/post/nssm-%E4%BD%BF%E7%94%A8/</link><pubDate>Thu, 19 Dec 2024 05:56:23 +0000</pubDate><guid>https://lianhaisen.github.io/post/nssm-%E4%BD%BF%E7%94%A8/</guid><description>&lt;p>这个软件主要功能 是使得应用变成服务运行&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/</link><description>Recent content on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 07 Jan 2025 07:40:16 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>转发 5555 端口</title><link>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</link><pubDate>Tue, 07 Jan 2025 07:40:16 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</guid><description>&lt;p>stream {
+upstream android_emulator {
+server 192.168.50.220:5555;
+}&lt;/p>
+&lt;pre>&lt;code>server {
+	listen 50000;
+	proxy_pass android_emulator;
+ proxy_connect_timeout 10s;
+ proxy_timeout 300s;
+ proxy_buffer_size 4k; # 设置缓冲区大小，优化传输性能
+}
+&lt;/code>&lt;/pre>
+&lt;p>}&lt;/p>
+&lt;p>调试内网不同网段的手机，试了好几次，
+listen 要大才可以 = =&lt;/p></description></item><item><title>nssm 使用</title><link>https://lianhaisen.github.io/post/nssm-%E4%BD%BF%E7%94%A8/</link><pubDate>Thu, 19 Dec 2024 05:56:23 +0000</pubDate><guid>https://lianhaisen.github.io/post/nssm-%E4%BD%BF%E7%94%A8/</guid><description>&lt;p>这个软件主要功能 是使得应用变成服务运行&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>&lt;strong>安装服务&lt;/strong>：&lt;/p>
