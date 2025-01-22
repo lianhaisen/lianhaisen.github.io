@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 07 Jan 2025 07:40:16 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>转发 5555 端口</title><link>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</link><pubDate>Tue, 07 Jan 2025 07:40:16 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</guid><description>&lt;p>stream {
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/post/</link><description>Recent content in Posts on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 22 Jan 2025 05:49:13 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>flutter inappwebview 内 touchstart 长按不想要的问题</title><link>https://lianhaisen.github.io/post/flutter-inappwebview-%E5%86%85-touchstart-%E9%95%BF%E6%8C%89%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Wed, 22 Jan 2025 05:49:13 +0000</pubDate><guid>https://lianhaisen.github.io/post/flutter-inappwebview-%E5%86%85-touchstart-%E9%95%BF%E6%8C%89%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;pre tabindex="0">&lt;code>gestureRecognizers: &amp;lt;Factory&amp;lt;OneSequenceGestureRecognizer&amp;gt;&amp;gt;{
+
+ Factory&amp;lt;OneSequenceGestureRecognizer&amp;gt;(
+
+	() =&amp;gt; LongPressGestureRecognizer(
+
+		 duration: const Duration(milliseconds: 10),
+
+	 )
+
+	 ..onLongPressDown = (detail) {
+
+		//  ToastUtils.show(&amp;#34;Long pressed on type: onLongPressDown&amp;#34;);
+
+		debugPrint(&amp;#34;Long pressed on type: onLongPressDown&amp;#34;);
+
+	 }
+
+
+
+	 .. onLongPressUp = (){
+
+		 // ToastUtils.show(&amp;#34;Long pressed on type: onLongPressUp&amp;#34;);
+
+		 debugPrint(&amp;#34;Long pressed on type: onLongPressUp&amp;#34;);
+
+	 }
+
+ ),
+
+}, // 禁用所有手势识别器
+&lt;/code>&lt;/pre>&lt;p>识别一个 10ms 的长按可以解决&lt;/p></description></item><item><title>转发 5555 端口</title><link>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</link><pubDate>Tue, 07 Jan 2025 07:40:16 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E8%BD%AC%E5%8F%91-5555-%E7%AB%AF%E5%8F%A3/</guid><description>&lt;p>stream {
 upstream android_emulator {
 server 192.168.50.220:5555;
 }&lt;/p>
