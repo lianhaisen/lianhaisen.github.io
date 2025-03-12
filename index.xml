@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/</link><description>Recent content on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Mon, 03 Mar 2025 04:46:06 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>RDP 多开</title><link>https://lianhaisen.github.io/post/rdp-%E5%A4%9A%E5%BC%80/</link><pubDate>Mon, 03 Mar 2025 04:46:06 +0000</pubDate><guid>https://lianhaisen.github.io/post/rdp-%E5%A4%9A%E5%BC%80/</guid><description>&lt;p>reg add &amp;ldquo;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server&amp;rdquo; /v fSingleSessionPerUser /t REG_DWORD /d 0 /f&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>幻海深蓝's BLOG</title><link>https://lianhaisen.github.io/</link><description>Recent content on 幻海深蓝's BLOG</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Wed, 12 Mar 2025 08:33:17 +0000</lastBuildDate><atom:link href="https://lianhaisen.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>castscreen 运行失败</title><link>https://lianhaisen.github.io/post/castscreen-%E8%BF%90%E8%A1%8C%E5%A4%B1%E8%B4%A5%E5%92%8C%E8%A7%A3%E5%86%B3/</link><pubDate>Wed, 12 Mar 2025 08:33:17 +0000</pubDate><guid>https://lianhaisen.github.io/post/castscreen-%E8%BF%90%E8%A1%8C%E5%A4%B1%E8%B4%A5%E5%92%8C%E8%A7%A3%E5%86%B3/</guid><description>&lt;p>flutter  castscreen: ^1.0.2 运行失败以为没有办法了
+发现 源码里面是要读取要一个&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;URLBase&amp;gt;http://192.168.100.114:49152&amp;lt;/URLBase&amp;gt; 路径 但是有的 xml 里面没有
+&lt;/code>&lt;/pre>&lt;p>那就添加 一个这个就好了&lt;/p>
+&lt;pre tabindex="0">&lt;code> 
+
+          // 检查是否已经存在 &amp;lt;URLBase&amp;gt;
+
+          if (rootElement.getElement(&amp;#39;URLBase&amp;#39;) == null) {
+
+            final urlBaseElement = XmlElement(XmlName(&amp;#39;URLBase&amp;#39;));
+
+            final uri = Uri.parse(url);
+
+            urlBaseElement.innerText = &amp;#39;${uri.scheme}://${uri.host}:${uri.port}&amp;#39;;
+
+            rootElement.children.insert(0, urlBaseElement);
+
+          }
+
+ 
+
+          m[&amp;#39;xml&amp;#39;] = document;
+&lt;/code>&lt;/pre>&lt;p>http 解析xml 那边提那就这些 这个插件就正常了~&lt;/p></description></item><item><title>RDP 多开</title><link>https://lianhaisen.github.io/post/rdp-%E5%A4%9A%E5%BC%80/</link><pubDate>Mon, 03 Mar 2025 04:46:06 +0000</pubDate><guid>https://lianhaisen.github.io/post/rdp-%E5%A4%9A%E5%BC%80/</guid><description>&lt;p>reg add &amp;ldquo;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server&amp;rdquo; /v fSingleSessionPerUser /t REG_DWORD /d 0 /f&lt;/p>
 &lt;p>reg add &amp;ldquo;HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon&amp;rdquo; /v AllowMultipleTSSessions /t REG_DWORD /d 1 /f&lt;/p></description></item><item><title>flutter inappwebview 内 touchstart 长按不想要的问题</title><link>https://lianhaisen.github.io/post/flutter-inappwebview-%E5%86%85-touchstart-%E9%95%BF%E6%8C%89%E4%B8%8D%E5%93%8D%E5%BA%94%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Wed, 22 Jan 2025 05:49:13 +0000</pubDate><guid>https://lianhaisen.github.io/post/flutter-inappwebview-%E5%86%85-touchstart-%E9%95%BF%E6%8C%89%E4%B8%8D%E5%93%8D%E5%BA%94%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;pre tabindex="0">&lt;code>gestureRecognizers: &amp;lt;Factory&amp;lt;OneSequenceGestureRecognizer&amp;gt;&amp;gt;{
 
  Factory&amp;lt;OneSequenceGestureRecognizer&amp;gt;(
@@ -409,4 +432,4 @@ Categories = []
 Tags = []
 Description = &amp;quot;&amp;quot;
 +++&lt;/p>
-&lt;p>&lt;img src="images/Pasted%20image%2020241029085339.png" alt="">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="images/Pasted%20image%2020241029085339.png" alt="">&lt;/p></description></item><item><title/><link>https://lianhaisen.github.io/post/%E6%9C%AA%E5%91%BD%E5%90%8D/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://lianhaisen.github.io/post/%E6%9C%AA%E5%91%BD%E5%90%8D/</guid><description/></item></channel></rss>
